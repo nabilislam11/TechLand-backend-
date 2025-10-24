@@ -1,4 +1,4 @@
-const { now, set } = require("mongoose");
+const mongoose = require("mongoose");
 const emailVerification = require("../helpers/emailVarification");
 const userSchema = require("../model/userSchema");
 const crypto = require("crypto");

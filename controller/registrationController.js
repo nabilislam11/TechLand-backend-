@@ -3,11 +3,10 @@ const userSchema = require("../model/userSchema");
 const bcrypt = require("bcrypt");
 async function registrationController(req, res) {
   console.log(req.body);
-  const { firstName, email, password } = req.body;
+  const { firstName, email, role, password } = req.body;
   if (!firstName) {
     return res.json("FirstName is required");
   }
-
   if (!email) {
     return res.json("Email is required");
   }
@@ -29,6 +28,7 @@ async function registrationController(req, res) {
       firstName: firstName,
       email: email,
       password: hashpassword,
+      role: role || "user",
     });
     await user.save();
     res.status(201).json({

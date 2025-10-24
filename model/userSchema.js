@@ -16,6 +16,9 @@ const userSchema = new Schema({
     require: true,
     trim: true,
   },
+  rule: {
+    type: String,
+  },
   verified: {
     default: false,
     type: Boolean,
