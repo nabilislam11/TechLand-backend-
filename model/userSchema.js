@@ -16,8 +16,10 @@ const userSchema = new Schema({
     require: true,
     trim: true,
   },
-  rule: {
+  role: {
     type: String,
+    enum: ["user", "admin"],
+    default: "user",
   },
   verified: {
     default: false,

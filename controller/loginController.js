@@ -27,9 +27,6 @@ async function loginController(req, res) {
         .json({ message: "Email is not verified.Please verify your email" });
     }
     const isMatch = bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Wrong password" });
-    }
 
     const accessToken = jwt.sign(
       {
@@ -39,13 +36,17 @@ async function loginController(req, res) {
         role: user.role,
       },
       "techlandapi",
-      { expiresIn: "10" }
+      { expiresIn: "10min" }
     );
-    res.status(200).json({
-      messege: "Login successful",
-      data: user,
-      accessToken: accessToken,
-    });
+    if (!isMatch) {
+      return res.status(400).json({ message: "Wrong password" });
+    } else {
+      res.status(200).json({
+        messege: "Login successful",
+
+        accessToken: accessToken,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       success: false,

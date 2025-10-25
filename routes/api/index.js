@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const authRoute = require("./auth");
-
+const homeRoute = require("./home");
+const adminRoute = require("./admin");
+const categoryRoute = require("./category");
 router.use("/authentication", authRoute);
+router.use("/home", homeRoute);
+router.use("/admin", adminRoute);
+router.use("/category", categoryRoute);
 module.exports = router;
